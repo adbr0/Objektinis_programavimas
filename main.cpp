@@ -16,9 +16,10 @@ int main()
         std::cout << "2 Generuoti pazymius atsitiktinai\n";
         std::cout << "3 Nuskaityti duomenis is failo\n";
         std::cout << "4 Sugeneruoti 5 testinius studentu failus\n";
+        std::cout << "5 Spartos tyrimas\n";
         std::cout << "Pasirinkimas: ";
         std::cin >> pasirinkimas;
-        while(pasirinkimas<1 || pasirinkimas>4)
+        while(pasirinkimas<1 || pasirinkimas>5)
         {
             std::cout<<"Neteisingas pasirinkimas\n";
             std::cout << "Naujas pasirinkimas: "; std::cin >> pasirinkimas;
@@ -42,6 +43,11 @@ int main()
     {
         generuoti_failus();
         std::cout<<"Failai paruosti\n";
+        return 0;
+    }
+    else if(pasirinkimas==5)
+    {
+        sparta();
         return 0;
     }
     if(!grupe.empty())

@@ -213,3 +213,47 @@ void failo_isv(const std::string& pavadinimas, const std::vector<studentas>& gru
     }
     failas.close();
 }
+void sparta(){
+        std::vector<int> dydziai = {1000, 10000, 100000, 1000000, 10000000};
+        std::cout<<"\nProgramos sparta\n";
+
+        for(int kiekis : dydziai)
+    {
+        std::string pavadinimas = "studentai_" + std::to_string(kiekis) + ".txt";
+        if (!std::filesystem::exists(pavadinimas))
+        {
+            std::cout << "\nFailas '" << pavadinimas << "' nerastas \n";
+            continue;
+        }
+        std::cout<<"\n Testuojamas failas: " << pavadinimas <<" -"<<kiekis<<" irasu\n";
+        std::vector<studentas> grupe;
+
+        auto bendra_pradzia=std::chrono::high_resolution_clock::now();
+        auto t1 = std::chrono::high_resolution_clock::now();
+        nuskaitymas(grupe, pavadinimas);
+        auto t2 = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> nuskaitymo_trukme=t2-t1;
+        std::cout<<"1. Nuskaitymas is failo: "<<std::fixed<<std::setprecision(4)<<nuskaitymo_trukme.count()<<" s.\n";
+
+        std::vector<studentas> vargsiukai;
+        std::vector<studentas> kietekai;
+        auto t3 = std::chrono::high_resolution_clock::now();
+        padalinti_studentai(grupe, vargsiukai, kietekai);
+        auto t4 = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> rusiavimo_trukme=t3-t4;
+        std::cout<<"2. Rusiavimas i 2 grupes: "<<std::fixed<<std::setprecision(4)<<rusiavimo_trukme.count()<<" s.\n";
+
+        auto t5 = std::chrono::high_resolution_clock::now();
+        failo_isv("vargsiukai_" + std::to_string(kiekis) + ".txt", vargsiukai);
+        failo_isv("kietekai_" + std::to_string(kiekis) + ".txt", kietekai);
+        auto t6 = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> isvedimo_trukme=t5-t6;
+        std::cout<<"3. Isvedimas i 2 failus: "<<std::fixed<<std::setprecision(4)<<isvedimo_trukme.count()<<" s.\n";
+
+        auto bendra_pabaiga =std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> bendra_trukme=bendra_pabaiga-bendra_pradzia;
+         std::cout<<"Bendras abdorojimo laikas: "<<std::fixed<<std::setprecision(4)<<bendra_trukme.count()<<" s.\n";
+
+
+    }
+}
