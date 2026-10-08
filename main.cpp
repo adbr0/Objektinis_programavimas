@@ -6,13 +6,7 @@
 #include <fstream>
 #include <sstream>
 #include <ctime>
-
-struct studentas {
-
-    std::string vardas, pavarde;
-    std::vector<int> pazymys;
-    int egzaminas;
-};
+#include "studentas.h"
 
 void nuskaitymas(std::vector<studentas>&grupe, std::ifstream&failas){
 
@@ -46,6 +40,14 @@ void nuskaitymas(std::vector<studentas>&grupe, std::ifstream&failas){
         grupe.push_back(A);
     }
 }
+//void duomenu_generavimas(std::int kiekis, std::vector<studentas>)
+//{
+//    for(int i=0; i<kiekis; i++)
+//    {
+//
+//    }
+//
+//}
 
 int main()
 {
@@ -169,23 +171,8 @@ int main()
     std::cout << "\n";
 
    for(auto B: grupe){
-
-        double mediana;
-        std::sort(B.pazymys.begin(),B.pazymys.end());
-
-        if (B.pazymys.size()%2 == 0){
-            mediana=(B.pazymys[B.pazymys.size()/2-1]+B.pazymys[B.pazymys.size()/2])/2.0;
-        }
-        else{
-            mediana=B.pazymys[B.pazymys.size()/2];
-        }
-
-        double galutinism, galutinisv, bendras=0;
-        galutinism=0.4*mediana+0.6*B.egzaminas;
-        for (int pazymys : B.pazymys){bendras += pazymys;}
-        galutinisv = 0.4 * (bendras / B.pazymys.size()) + 0.6 * B.egzaminas;
-
+        galutinis(B);
         std::cout << std::left << std::setw(15) << B.pavarde << std::setw(15)
-        << B.vardas << std::fixed << std::setprecision(2) << std::setw(20) << galutinisv << std::setw(20) <<galutinism << "\n";
+        << B.vardas << std::fixed << std::setprecision(2) << std::setw(20) << B.galutinisv << std::setw(20) << B.galutinism << "\n";
     }
 }
