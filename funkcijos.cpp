@@ -4,6 +4,7 @@
 #include <sstream>
 #include <iomanip>
 #include <filesystem>
+#include <chrono>
 
 void nuskaitymas(std::vector<studentas>&grupe, const std::string&pavadinimas)
 {
@@ -133,6 +134,9 @@ void generuoti_failus()
             continue;
         }
         std::cout <<"Generuojamas failas: "<< pavadinimas;
+
+        auto pradzia = std::chrono::high_resolution_clock::now();
+
         std::ofstream failas(pavadinimas);
         if(!failas)
         {
@@ -157,7 +161,11 @@ void generuoti_failus()
             failas<<std::setw(8)<<(std::rand()%10+1)<<"\n";
         }
         failas.close();
-        std::cout<<" Generavimas baigtas\n";
+
+        auto pabaiga = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> trukme = pabaiga-pradzia;
+        std::cout<<"Generavimas baigtas per: "<<std::fixed<<std::setprecision(4)<<trukme.count()<< " s.\n";
+
     }
 }
 
