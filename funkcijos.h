@@ -12,6 +12,7 @@ void rezultatai(const std::vector<studentas>& grupe);
 void generuoti_failus();
 void padalinti_studentai(const std::vector<studentas>& grupe, std::vector<studentas>& vargsiukai, std::vector<studentas>& kietekai);
 void failo_isv(const std::string& pavadinimas, const std::vector<studentas>& grupe);
-
+void sparta();
+void rusiavimas(std::vector<studentas>& grupe, int r_pasirinkimas);
 
 #endif // FUNKCIJOS_H_INCLUDED
