@@ -56,7 +56,11 @@ int main()
         {
             return a.pavarde<b.pavarde;
         });
-        rezultatai(grupe);
+        if(pasirinkimas == 1 || pasirinkimas==2)
+        {
+            rezultatai(grupe);
+        }
+
 
         std::vector<studentas> vargsiukai;
         std::vector<studentas> kietekai;
