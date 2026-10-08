@@ -44,8 +44,21 @@ int main()
         std::cout<<"Failai paruosti\n";
         return 0;
     }
+    if(!grupe.empty())
+    {
+        std::sort(grupe.begin(), grupe.end(), [](const studentas&a, const studentas&b)
+        {
+            return a.pavarde<b.pavarde;
+        });
+        rezultatai(grupe);
 
-    std::sort(grupe.begin(), grupe.end(), [] (const studentas&a, const studentas&b){return a.pavarde < b.pavarde;});
-    rezultatai(grupe);
+        std::vector<studentas> vargsiukai;
+        std::vector<studentas> kietekai;
+        padalinti_studentai(grupe, vargsiukai, kietekai);
+        std::cout<<"/nStudentai padalinti ir isvesti i failus:\n";
+        std::cout<<"1. 'vargsiukai.txt' "<< vargsiukai.size() <<" studentu\n";
+        std::cout<<"1. 'kietekai.txt' "<< kietekai.size() <<" studentu\n";
+    }
+
     return 0;
 }

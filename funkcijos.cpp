@@ -175,3 +175,33 @@ void rezultatai(const std::vector<studentas>& grupe)
                   << std::setw(20) << B.galutinisv << std::setw(20) << B.galutinism << "\n";
     }
 }
+void padalinti_studentai(const std::vector<studentas>& grupe, std::vector<studentas>& vargsiukai, std::vector<studentas>& kietekai)
+{
+    vargsiukai.clear();
+    kietekai.clear();
+    for(const auto& a:grupe)
+    {
+        if(a.galutinisv<5.0){vargsiukai.push_back(a);}
+        else{kietekai.push_back(a);};
+    }
+}
+void failo_isv(const std::string& pavadinimas, const std::vector<studentas>& grupe)
+{
+    std::ofstream failas(pavadinimas);
+    if (!failas) {
+        std::cout << "Nepavyko sukurti failo " << pavadinimas << "\n";
+        return;
+    }
+
+    failas << std::left << std::setw(15) << "Pavarde" << std::setw(15) << "Vardas"
+              << std::setw(20) << "Galutinis (Vid.)" << std::setw(20) << "Galutinis (Med.)" << "\n";
+    for (int i = 0; i < 70; i++) failas << "-";
+    failas << "\n";
+
+     for (const auto& a : grupe) {
+        std::cout << std::left << std::setw(15) << a.pavarde << std::setw(15)
+                  << a.vardas << std::fixed << std::setprecision(2)
+                  << std::setw(20) << a.galutinisv << std::setw(20) << a.galutinism << "\n";
+    }
+    failas.close();
+}
