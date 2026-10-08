@@ -10,7 +10,6 @@ int main()
         std::srand(std::time(nullptr));
         std::vector<studentas> grupe;
         int pasirinkimas;
-
         std::cout << "\nPasirinkite duomenu ivedimo buda:\n";
         std::cout << "1 Ivesti pazymius ranka\n";
         std::cout << "2 Generuoti pazymius atsitiktinai\n";
@@ -19,8 +18,10 @@ int main()
         std::cout << "5 Spartos tyrimas\n";
         std::cout << "Pasirinkimas: ";
         std::cin >> pasirinkimas;
-        while(pasirinkimas<1 || pasirinkimas>5)
+        while(std::cin.fail() || pasirinkimas<1 || pasirinkimas>5)
         {
+            std::cin.clear();
+            std::cin.ignore(1000, '\n');
             std::cout<<"Neteisingas pasirinkimas\n";
             std::cout << "Naujas pasirinkimas: "; std::cin >> pasirinkimas;
 
@@ -52,22 +53,34 @@ int main()
     }
     if(!grupe.empty())
     {
-        std::sort(grupe.begin(), grupe.end(), [](const studentas&a, const studentas&b)
+       int r_pasirinkimas;
+        std::cout << "\nPasirinkite rusiavimo buda:\n";
+        std::cout << "1 Pagal pavarde\n";
+        std::cout << "2 Pagal varda\n";
+        std::cout << "3 Pagal galutini bala\n";
+        std::cin >> r_pasirinkimas;
+         while(std::cin.fail() || r_pasirinkimas<1 || r_pasirinkimas>3)
         {
-            return a.pavarde<b.pavarde;
-        });
-        if(pasirinkimas == 1 || pasirinkimas==2)
+            std::cin.clear();
+            std::cin.ignore(1000, '\n');
+            std::cout<<"Neteisingas pasirinkimas\n";
+            std::cout << "Naujas pasirinkimas: "; std::cin >> r_pasirinkimas;
+
+        }
+
+        rusiavimas(grupe, r_pasirinkimas);
+        if (pasirinkimas == 1 || pasirinkimas==2)
         {
             rezultatai(grupe);
         }
-
-
         std::vector<studentas> vargsiukai;
         std::vector<studentas> kietekai;
         padalinti_studentai(grupe, vargsiukai, kietekai);
-        std::cout<<"/nStudentai padalinti ir isvesti i failus:\n";
+        failo_isv("vargsiukai.txt", vargsiukai);
+        failo_isv("kietekai.txt", kietekai);
+        std::cout<<"\n Studentai padalinti ir isvesti i failus:\n";
         std::cout<<"1. 'vargsiukai.txt' "<< vargsiukai.size() <<" studentu\n";
-        std::cout<<"1. 'kietekai.txt' "<< kietekai.size() <<" studentu\n";
+        std::cout<<"2. 'kietekai.txt' "<< kietekai.size() <<" studentu\n";
     }
 
     return 0;

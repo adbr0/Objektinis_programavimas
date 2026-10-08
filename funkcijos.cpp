@@ -5,6 +5,7 @@
 #include <iomanip>
 #include <filesystem>
 #include <chrono>
+#include <algorithm>
 
 void nuskaitymas(std::vector<studentas>&grupe, const std::string&pavadinimas)
 {
@@ -234,11 +235,21 @@ void sparta(){
         auto t2 = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> nuskaitymo_trukme=t2-t1;
 
+        auto tr_1 = std::chrono::high_resolution_clock::now();
+        std::sort(grupe.begin(), grupe.end(), [](const studentas& a, const studentas& b) {
+            return a.pavarde < b.pavarde;
+        });
+        auto tr_2 = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> sort_trukme=tr_2-tr_1;
 
         std::vector<studentas> vargsiukai;
         std::vector<studentas> kietekai;
         auto t3 = std::chrono::high_resolution_clock::now();
         padalinti_studentai(grupe, vargsiukai, kietekai);
+
+        grupe.clear();
+        grupe.shrink_to_fit();
+
         auto t4 = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> rusiavimo_trukme=t4-t3;
 
@@ -252,10 +263,37 @@ void sparta(){
         std::chrono::duration<double> bendra_trukme=bendra_pabaiga-bendra_pradzia;
 
         std::cout<<"1. Nuskaitymas is failo: "<<std::fixed<<std::setprecision(4)<<nuskaitymo_trukme.count()<<" s.\n";
-        std::cout<<"2. Rusiavimas i 2 grupes: "<<std::fixed<<std::setprecision(4)<<rusiavimo_trukme.count()<<" s.\n";
-        std::cout<<"3. Isvedimas i 2 failus: "<<std::fixed<<std::setprecision(4)<<isvedimo_trukme.count()<<" s.\n";
+        std::cout<<"2. Rusiavimas didejimo tvarka: "<<std::fixed<<std::setprecision(4)<<sort_trukme.count()<<" s.\n";
+        std::cout<<"3. Rusiavimas i 2 grupes: "<<std::fixed<<std::setprecision(4)<<rusiavimo_trukme.count()<<" s.\n";
+        std::cout<<"4. Isvedimas i 2 failus: "<<std::fixed<<std::setprecision(4)<<isvedimo_trukme.count()<<" s.\n";
         std::cout<<"Bendras abdorojimo laikas: "<<std::fixed<<std::setprecision(4)<<bendra_trukme.count()<<" s.\n";
 
 
     }
 }
+void rusiavimas(std::vector<studentas>& grupe, int r_pasirinkimas)
+{
+    if (r_pasirinkimas==1)
+    {
+        std::sort(grupe.begin(), grupe.end(), [](const studentas&a, const studentas&b)
+        {
+            return a.pavarde<b.pavarde;
+        });
+    }
+     if (r_pasirinkimas==2)
+    {
+        std::sort(grupe.begin(), grupe.end(), [](const studentas&a, const studentas&b)
+        {
+            return a.vardas<b.vardas;
+        });
+    }
+     if (r_pasirinkimas==3)
+    {
+        std::sort(grupe.begin(), grupe.end(), [](const studentas&a, const studentas&b)
+        {
+            return a.galutinisv<b.galutinisv;
+        });
+    }
+
+}
+
