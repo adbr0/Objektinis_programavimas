@@ -266,7 +266,7 @@ void sparta(){
         std::cout<<"2. Rusiavimas didejimo tvarka: "<<std::fixed<<std::setprecision(4)<<sort_trukme.count()<<" s.\n";
         std::cout<<"3. Rusiavimas i 2 grupes: "<<std::fixed<<std::setprecision(4)<<rusiavimo_trukme.count()<<" s.\n";
         std::cout<<"4. Isvedimas i 2 failus: "<<std::fixed<<std::setprecision(4)<<isvedimo_trukme.count()<<" s.\n";
-        std::cout<<"Bendras abdorojimo laikas: "<<std::fixed<<std::setprecision(4)<<bendra_trukme.count()<<" s.\n";
+        std::cout<<"Bendras apdorojimo laikas: "<<std::fixed<<std::setprecision(4)<<bendra_trukme.count()<<" s.\n";
 
 
     }
