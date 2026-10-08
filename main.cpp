@@ -11,11 +11,11 @@ int main()
         std::vector<studentas> grupe;
         int pasirinkimas;
         std::cout << "\nPasirinkite duomenu ivedimo buda:\n";
-        std::cout << "1 Ivesti pazymius ranka\n";
-        std::cout << "2 Generuoti pazymius atsitiktinai\n";
-        std::cout << "3 Nuskaityti duomenis is failo\n";
-        std::cout << "4 Sugeneruoti 5 testinius studentu failus\n";
-        std::cout << "5 Spartos tyrimas\n";
+        std::cout << "1. Ivesti pazymius ranka\n";
+        std::cout << "2. Generuoti pazymius atsitiktinai\n";
+        std::cout << "3. Nuskaityti duomenis is failo\n";
+        std::cout << "4. Sugeneruoti 5 testinius studentu failus\n";
+        std::cout << "5. Spartos tyrimas\n";
         std::cout << "Pasirinkimas: ";
         std::cin >> pasirinkimas;
         while(std::cin.fail() || pasirinkimas<1 || pasirinkimas>5)
@@ -55,9 +55,9 @@ int main()
     {
        int r_pasirinkimas;
         std::cout << "\nPasirinkite rusiavimo buda:\n";
-        std::cout << "1 Pagal pavarde\n";
-        std::cout << "2 Pagal varda\n";
-        std::cout << "3 Pagal galutini bala\n";
+        std::cout << "1. Pagal pavarde\n";
+        std::cout << "2. Pagal varda\n";
+        std::cout << "3. Pagal galutini bala\n";
         std::cin >> r_pasirinkimas;
          while(std::cin.fail() || r_pasirinkimas<1 || r_pasirinkimas>3)
         {

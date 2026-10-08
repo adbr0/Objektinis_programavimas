@@ -223,7 +223,7 @@ void sparta(){
         std::string pavadinimas = "studentai_" + std::to_string(kiekis) + ".txt";
         if (!std::filesystem::exists(pavadinimas))
         {
-            std::cout << "\nFailas '" << pavadinimas << "' nerastas \n";
+            std::cout << "\n Failas '" << pavadinimas << "' nerastas \n";
             continue;
         }
         std::cout<<"\n Testuojamas failas: " << pavadinimas <<" ("<<kiekis<<") irasu\n";
