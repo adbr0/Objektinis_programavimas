@@ -76,6 +76,7 @@ Lentelėse pateikti laikai sekundėmis ir jų aritmetinis vidurkis.
 
 #### 3 bandymas
 <img width="431" height="491" alt="image" src="https://github.com/user-attachments/assets/1cbe4d06-e813-4ae9-b1cf-0b868baed219" />
+
 ---
 ## Išvados
 1. Didžiąją dalį bendro vykdymo laiko užima duomenų nuskaitymas ir įrašymas į failus.
