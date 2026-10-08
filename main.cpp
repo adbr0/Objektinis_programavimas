@@ -15,9 +15,10 @@ int main()
         std::cout << "1 Ivesti pazymius ranka\n";
         std::cout << "2 Generuoti pazymius atsitiktinai\n";
         std::cout << "3 Nuskaityti duomenis is failo\n";
+        std::cout << "4 Sugeneruoti 5 testinius studentu failus\n";
         std::cout << "Pasirinkimas: ";
         std::cin >> pasirinkimas;
-        while(pasirinkimas<1 || pasirinkimas>3)
+        while(pasirinkimas<1 || pasirinkimas>4)
         {
             std::cout<<"Neteisingas pasirinkimas\n";
             std::cout << "Naujas pasirinkimas: "; std::cin >> pasirinkimas;
@@ -37,7 +38,14 @@ int main()
         std::cout<<"Iveskite failo pavadinima su .txt: "; std::cin>>pav;
         nuskaitymas(grupe, pav);
     }
+    else if(pasirinkimas==4)
+    {
+        generuoti_failus();
+        std::cout<<"Failai paruosti\n";
+        return 0;
+    }
 
     std::sort(grupe.begin(), grupe.end(), [] (const studentas&a, const studentas&b){return a.pavarde < b.pavarde;});
     rezultatai(grupe);
+    return 0;
 }

@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 #include <iomanip>
+#include <filesystem>
 
 void nuskaitymas(std::vector<studentas>&grupe, const std::string&pavadinimas)
 {
@@ -117,6 +118,46 @@ void generuoti_paz(std::vector<studentas>& grupe)
             std::cout << "Neteisingas pasirinkimas. Iveskite t arba n.\n";
         }
         if (klausimas == 'n' || klausimas == 'N') break;
+    }
+}
+void generuoti_failus()
+{
+    std::vector<int> dydziai = {1000, 10000, 100000, 1000000, 10000000};
+    const int nd_kiekis = 5;
+    for(int kiekis : dydziai)
+    {
+        std::string pavadinimas = "studentai_" + std::to_string(kiekis) + ".txt";
+        if (std::filesystem::exists(pavadinimas))
+        {
+            std::cout << "Failas '" << pavadinimas << "' jau egzistuoja \n";
+            continue;
+        }
+        std::cout <<"Generuojamas failas: "<< pavadinimas;
+        std::ofstream failas(pavadinimas);
+        if(!failas)
+        {
+            std::cout<<"Klaida kuriant faila\n";
+            continue;
+        }
+
+        failas<<std::left<<std::setw(15)<<"Vardas"<<std::setw(15)<<"Pavarde";
+        for(int i=1; i<=nd_kiekis; i++)
+        {
+            failas<<std::setw(8)<<("nd" + std::to_string(i));
+        }
+        failas<<std::setw(8)<<"Egz."<<"\n";
+
+        for(int i=1; i<= kiekis; i++)
+        {
+            failas << std::left<<std::setw(15) <<("Vardas"+std::to_string(i))<< std::setw(15) <<("Pavarde"+std::to_string(i));
+            for(int j=0; j<nd_kiekis; j++)
+            {
+                failas<<std::setw(8)<<(std::rand()%10+1);
+            }
+            failas<<std::setw(8)<<(std::rand()%10+1)<<"\n";
+        }
+        failas.close();
+        std::cout<<" Generavimas baigtas\n";
     }
 }
 
