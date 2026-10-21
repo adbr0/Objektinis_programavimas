@@ -222,7 +222,7 @@ void failo_isv(const std::string& pavadinimas, const std::vector<studentas>& gru
 }
 void sparta(){
         std::vector<int> dydziai = {1000, 10000, 100000, 1000000, 10000000};
-        std::cout<<"\n--- Programos sparta ---\n";
+        std::cout<<"\n--- Programos sparta (std::sort) ---\n";
 
         for(int kiekis : dydziai)
     {
@@ -369,5 +369,64 @@ void failo_isv_list(const std::string& pavadinimas, const std::list<studentas>& 
                   << std::setw(20) << a.galutinisv << std::setw(20) << a.galutinism << "\n";
     }
     failas.close();
+}
+
+void sparta_list()
+{
+    std::vector<int> dydziai = {1000, 10000, 100000, 1000000, 10000000};
+    std::cout<<"\n--- Programos sparta (std::list) ---\n";
+
+    for(int kiekis : dydziai)
+    {
+        std::string pavadinimas = "studentai_" + std::to_string(kiekis) + ".txt";
+        if (!std::filesystem::exists(pavadinimas))
+        {
+            std::cout << "\n Failas '" << pavadinimas << "' nerastas \n";
+            continue;
+        }
+        std::cout<<"\n Testuojamas failas: " << pavadinimas <<" ("<<kiekis<<") irasu [std::list]\n";
+        std::list<studentas> grupe;
+
+        auto bendra_pradzia=std::chrono::high_resolution_clock::now();
+        auto t1 = std::chrono::high_resolution_clock::now();
+        nuskaitymas_list(grupe, pavadinimas);
+
+        auto t2 = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> nuskaitymo_trukme=t2-t1;
+
+        auto tr_1 = std::chrono::high_resolution_clock::now();
+        grupe.sort([](const studentas& a, const studentas& b) {
+            return a.pavarde < b.pavarde;
+        });
+        auto tr_2 = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> sort_trukme=tr_2-tr_1;
+
+        std::list<studentas> vargsiukai;
+        std::list<studentas> kietekai;
+
+        auto t3 = std::chrono::high_resolution_clock::now();
+        padalinti_studentai_list(grupe, vargsiukai, kietekai);
+
+        grupe.clear();
+
+        auto t4 = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> rusiavimo_trukme=t4-t3;
+
+        auto t5 = std::chrono::high_resolution_clock::now();
+        failo_isv_list("vargsiukai_list_" + std::to_string(kiekis) + ".txt", vargsiukai);
+        failo_isv_list("kietekai_list_" + std::to_string(kiekis) + ".txt", kietekai);
+
+        auto t6 = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> isvedimo_trukme=t6-t5;
+
+        auto bendra_pabaiga =std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> bendra_trukme=bendra_pabaiga-bendra_pradzia;
+
+        std::cout<<"1. Nuskaitymas is failo: "<<std::fixed<<std::setprecision(4)<<nuskaitymo_trukme.count()<<" s.\n";
+        std::cout<<"2. Rusiavimas didejimo tvarka: "<<std::fixed<<std::setprecision(4)<<sort_trukme.count()<<" s.\n";
+        std::cout<<"3. Rusiavimas i 2 grupes: "<<std::fixed<<std::setprecision(4)<<rusiavimo_trukme.count()<<" s.\n";
+        std::cout<<"4. Isvedimas i 2 failus: "<<std::fixed<<std::setprecision(4)<<isvedimo_trukme.count()<<" s.\n";
+        std::cout<<"Bendras apdorojimo laikas: "<<std::fixed<<std::setprecision(4)<<bendra_trukme.count()<<" s.\n";
+    }
 }
 
