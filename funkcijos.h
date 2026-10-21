@@ -4,6 +4,7 @@
 #include "studentas.h"
 #include <vector>
 #include <string>
+#include <list>
 
 void nuskaitymas(std::vector<studentas>&grupe, const std::string&failas);
 void ivestis_r(std::vector<studentas>& grupe);
