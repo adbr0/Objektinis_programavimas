@@ -350,3 +350,24 @@ void padalinti_studentai_list(const std::list<studentas>& grupe, std::list<stude
     }
 }
 
+void failo_isv_list(const std::string& pavadinimas, const std::list<studentas>& grupe)
+{
+    std::ofstream failas(pavadinimas);
+    if (!failas) {
+        std::cout << "Nepavyko sukurti failo " << pavadinimas << "\n";
+        return;
+    }
+
+    failas << std::left << std::setw(15) << "Pavarde" << std::setw(15) << "Vardas"
+              << std::setw(20) << "Galutinis (Vid.)" << std::setw(20) << "Galutinis (Med.)" << "\n";
+    for (int i = 0; i < 70; i++) failas << "-";
+    failas << "\n";
+
+     for (const auto& a : grupe) {
+        failas << std::left << std::setw(15) << a.pavarde << std::setw(15)
+                  << a.vardas << std::fixed << std::setprecision(2)
+                  << std::setw(20) << a.galutinisv << std::setw(20) << a.galutinism << "\n";
+    }
+    failas.close();
+}
+
