@@ -302,4 +302,39 @@ void rusiavimas(std::vector<studentas>& grupe, int r_pasirinkimas)
     }
 
 }
+void nuskaitymas_list(std::list<studentas>& grupe, const std::string& failas)
+{
+
+    std::ifstream failas(pavadinimas);
+    if (!failas) {
+        std::cout << "Nepavyko atidaryti failo: " << pavadinimas << "\n";
+        return;
+    }
+
+    std::string eilute;
+    std::getline(failas, eilute);
+
+    while (std::getline(failas, eilute)) {
+        if (eilute.empty()) continue;
+        std::istringstream iss(eilute);
+        studentas A;
+        if (!(iss >> A.vardas >> A.pavarde)) continue;
+
+        std::vector<int> skaiciai;
+        int skaicius;
+        while (iss >> skaicius) {
+            skaiciai.push_back(skaicius);
+        }
+        if (skaiciai.size() < 2) continue;
+
+        A.egzaminas = skaiciai.back();
+        skaiciai.pop_back();
+        A.pazymys = skaiciai;
+
+        galutinis(A);
+        grupe.push_back(A);
+    }
+    failas.close()
+
+}
 
