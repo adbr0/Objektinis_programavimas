@@ -338,3 +338,15 @@ void nuskaitymas_list(std::list<studentas>& grupe, const std::string& failas)
 
 }
 
+void padalinti_studentai_list(const std::list<studentas>& grupe, std::list<studentas>& vargsiukai, std::list<studentas>& kietekai)
+{
+
+    vargsiukai.clear();
+    kietekai.clear();
+    for(const auto& a:grupe)
+    {
+        if(a.galutinisv<5.0){vargsiukai.push_back(a);}
+        else{kietekai.push_back(a);};
+    }
+}
+
