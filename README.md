@@ -18,6 +18,10 @@
 * Realizuotas rūšiavimas pagal naudotojo pasirinktą parametrą (pavardę, vardą, galutinį balą) bei skaidymas į `vargsiukai.txt` (< 5.0) ir `kietekai.txt` (>= 5.0).
 * Atliktas I/O ir apdorojimo laiko tyrimas naudojant `<chrono>`.
 
+### [v0.3]
+* STL konteinerių spartos tyrimas (`std::vector` prieš `std::list`), atminties adresų analizė ir 3 bandymų vidurkių palyginimas.
+  *  **Išsamus v0.3 tyrimo aprašymas su lentelėmis ir analize:** [Pereiti į v0.3 README](https://github.com/adbr0/Objektinis_programavimas/blob/v0.3/README.md)
+
 ## Spartos tyrimo rezultatai:
 Tyrimas atliktas paleidus testą 3 kartus su iš anksto sugeneruotais duomenų failais. 
 Lentelėse pateikti laikai sekundėmis ir jų aritmetinis vidurkis.
