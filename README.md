@@ -1,5 +1,3 @@
----
-
 ## [v0.3] – Konteinerių spartos analizė: std::vector vs std::list
 
 ### Sistemos specifikacija:
