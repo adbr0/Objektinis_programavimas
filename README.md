@@ -1,4 +1,4 @@
-**Pastaba:** Bendrą projekto informaciją bei ankstesnių versijų (`v0.1`, `v0.2`) realizacijas rasite pagrindinėje [main šakoje](). Šioje šakoje pateikta išsami **v0.3** konteinerių tyrimo ataskaita.
+**Pastaba:** Bendrą projekto informaciją bei ankstesnių versijų (`v0.1`, `v0.2`) realizacijas rasite pagrindinėje [main šakoje](https://github.com/adbr0/Objektinis_programavimas/blob/main/README.md). Šioje šakoje pateikta išsami **v0.3** konteinerių tyrimo ataskaita.
 
 ## [v0.3] – Konteinerių spartos analizė: std::vector vs std::list
 
