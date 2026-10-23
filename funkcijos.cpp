@@ -44,6 +44,7 @@ void nuskaitymas(std::vector<studentas>&grupe, const std::string&pavadinimas)
 
 void ivestis_r(std::vector<studentas>& grupe)
 {
+    static std::list<studentas> grupe_list;
     while (true) {
         studentas A;
         std::cout << "Iveskite per tarpa studento varda ir pavarde: ";
@@ -83,9 +84,8 @@ void ivestis_r(std::vector<studentas>& grupe)
 
         galutinis(A);
         grupe.push_back(A);
+        grupe_list.push_back(A);
 
-        std::list<studentas> temp_list;
-        temp_list.push_back(A);
         std::cout << "\n Atminties adresai: \n";
         std::cout << "std::vector: " << &(grupe.back()) << "\n";
         std::cout << "std::list: " << &(temp_list.back()) << "\n\n";
@@ -220,9 +220,9 @@ void failo_isv(const std::string& pavadinimas, const std::vector<studentas>& gru
     }
     failas.close();
 }
-void sparta(){
+void sparta_vector(){
         std::vector<int> dydziai = {1000, 10000, 100000, 1000000, 10000000};
-        std::cout<<"\n--- Programos sparta (std::sort) ---\n";
+        std::cout<<"\n--- Programos sparta (std::vector) ---\n";
 
         for(int kiekis : dydziai)
     {
@@ -232,7 +232,7 @@ void sparta(){
             std::cout << "\n Failas '" << pavadinimas << "' nerastas \n";
             continue;
         }
-        std::cout<<"\n Testuojamas failas: " << pavadinimas <<" ("<<kiekis<<") irasu\n";
+        std::cout<<"\n Testuojamas failas: " << pavadinimas <<" ("<<kiekis<<") [std::vector]irasu\n";
         std::vector<studentas> grupe;
 
         auto bendra_pradzia=std::chrono::high_resolution_clock::now();
@@ -260,8 +260,8 @@ void sparta(){
         std::chrono::duration<double> rusiavimo_trukme=t4-t3;
 
         auto t5 = std::chrono::high_resolution_clock::now();
-        failo_isv("vargsiukai_" + std::to_string(kiekis) + ".txt", vargsiukai);
-        failo_isv("kietekai_" + std::to_string(kiekis) + ".txt", kietekai);
+        failo_isv("vargsiukai_vector_" + std::to_string(kiekis) + ".txt", vargsiukai);
+        failo_isv("kietekai_vector_" + std::to_string(kiekis) + ".txt", kietekai);
         auto t6 = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> isvedimo_trukme=t6-t5;
 
@@ -302,9 +302,8 @@ void rusiavimas(std::vector<studentas>& grupe, int r_pasirinkimas)
     }
 
 }
-void nuskaitymas_list(std::list<studentas>& grupe, const std::string& failas)
+void nuskaitymas_list(std::list<studentas>& grupe, const std::string& pavadinimas)
 {
-
     std::ifstream failas(pavadinimas);
     if (!failas) {
         std::cout << "Nepavyko atidaryti failo: " << pavadinimas << "\n";
@@ -334,7 +333,7 @@ void nuskaitymas_list(std::list<studentas>& grupe, const std::string& failas)
         galutinis(A);
         grupe.push_back(A);
     }
-    failas.close()
+    failas.close();
 
 }
 
