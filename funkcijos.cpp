@@ -88,7 +88,7 @@ void ivestis_r(std::vector<studentas>& grupe)
 
         std::cout << "\n Atminties adresai: \n";
         std::cout << "std::vector: " << &(grupe.back()) << "\n";
-        std::cout << "std::list: " << &(temp_list.back()) << "\n\n";
+        std::cout << "std::list: " << &(grupe_list.back()) << "\n\n";
 
         char klausimas;
         while (true) {
