@@ -11,7 +11,9 @@ void ivestis_r(std::vector<studentas>& grupe);
 void generuoti_paz(std::vector<studentas>& grupe);
 void rezultatai(const std::vector<studentas>& grupe);
 void generuoti_failus();
-void padalinti_studentai(const std::vector<studentas>& grupe, std::vector<studentas>& vargsiukai, std::vector<studentas>& kietekai);
+void padalinti_studentai_vector(const std::vector<studentas>& grupe, std::vector<studentas>& vargsiukai, std::vector<studentas>& kietekai);
+void padalinti_studentai_vector2(std::vector<studentas>& grupe, std::vector<studentas>& vargsiukai);
+
 void failo_isv(const std::string& pavadinimas, const std::vector<studentas>& grupe);
 void sparta_vector();
 void rusiavimas(std::vector<studentas>& grupe, int r_pasirinkimas);

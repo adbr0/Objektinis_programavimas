@@ -190,7 +190,7 @@ void rezultatai(const std::vector<studentas>& grupe)
                   << std::setw(20) << B.galutinisv << std::setw(20) << B.galutinism << "\n";
     }
 }
-void padalinti_studentai(const std::vector<studentas>& grupe, std::vector<studentas>& vargsiukai, std::vector<studentas>& kietekai)
+void padalinti_studentai_vector(const std::vector<studentas>& grupe, std::vector<studentas>& vargsiukai, std::vector<studentas>& kietekai)
 {
     vargsiukai.clear();
     kietekai.clear();
@@ -200,6 +200,21 @@ void padalinti_studentai(const std::vector<studentas>& grupe, std::vector<studen
         else{kietekai.push_back(a);};
     }
 }
+
+void padalinti_studentai_vector2(std::vector<studentas>& grupe, std::vector<studentas>& vargsiukai)
+{
+    vargsiukai.clear();
+    auto i = grupe.begin();
+    while (i != grupe.end()) {
+        if (i->galutinisv < 5.0) {
+            vargsiukai.push_back(*it);
+            i = grupe.erase(it);
+        } else {
+            ++i;
+        }
+    }
+}
+
 void failo_isv(const std::string& pavadinimas, const std::vector<studentas>& grupe)
 {
     std::ofstream failas(pavadinimas);
