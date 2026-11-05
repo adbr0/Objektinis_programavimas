@@ -23,6 +23,7 @@ void rusiavimas(std::vector<studentas>& grupe, int r_pasirinkimas);
 void nuskaitymas_list(std::list<studentas>& grupe, const std::string& pavadinimas);
 void padalinti_studentai_list(const std::list<studentas>& grupe, std::list<studentas>& vargsiukai, std::list<studentas>& kietekai);
 void padalinti_studentai_list2(std::list<studentas>& grupe, std::list<studentas>& vargsiukai);
+void padalinti_studentai_list3(std::list<studentas>& grupe, std::list<studentas>& vargsiukai);
 void failo_isv_list(const std::string& pavadinimas, const std::list<studentas>& grupe);
 void sparta_list();
 

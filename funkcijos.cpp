@@ -386,7 +386,16 @@ void padalinti_studentai_list2(std::list<studentas>& grupe, std::list<studentas>
         }
     }
 }
-
+void padalinti_studentai_list3(std::list<studentas>& grupe, std::list<studentas>& vargsiukai)
+{
+    vargsiukai.clear();
+    std::copy_if(grupe.begin(), grupe.end(), std::back_inserter(vargsiukai), [](const studentas& s) {
+        return s.galutinisv < 5.0;
+    });
+    grupe.remove_if([](const studentas& s) {
+        return s.galutinisv < 5.0;
+    });
+}
 void failo_isv_list(const std::string& pavadinimas, const std::list<studentas>& grupe)
 {
     std::ofstream failas(pavadinimas);
