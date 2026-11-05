@@ -13,6 +13,7 @@ void rezultatai(const std::vector<studentas>& grupe);
 void generuoti_failus();
 void padalinti_studentai_vector(const std::vector<studentas>& grupe, std::vector<studentas>& vargsiukai, std::vector<studentas>& kietekai);
 void padalinti_studentai_vector2(std::vector<studentas>& grupe, std::vector<studentas>& vargsiukai);
+void padalinti_studentai_vector3(std::vector<studentas>& grupe, std::vector<studentas>& vargsiukai);
 
 void failo_isv(const std::string& pavadinimas, const std::vector<studentas>& grupe);
 void sparta_vector();

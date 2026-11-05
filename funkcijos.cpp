@@ -214,6 +214,15 @@ void padalinti_studentai_vector2(std::vector<studentas>& grupe, std::vector<stud
         }
     }
 }
+void padalinti_studentai_vector3(std::vector<studentas>& grupe, std::vector<studentas>& vargsiukai)
+{
+    vargsiukai.clear();
+    auto i = std::stable_partition(grupe.begin(), grupe.end(), [](const studentas& s) {
+        return s.galutinisv < 5.0;
+    });
+    vargsiukai.assign(grupe.begin(), i);
+    grupe.erase(grupe.begin(), i);
+}
 
 void failo_isv(const std::string& pavadinimas, const std::vector<studentas>& grupe)
 {
@@ -266,7 +275,7 @@ void sparta_vector(){
         std::vector<studentas> vargsiukai;
         std::vector<studentas> kietekai;
         auto t3 = std::chrono::high_resolution_clock::now();
-        padalinti_studentai(grupe, vargsiukai, kietekai);
+        padalinti_studentai_vector(grupe, vargsiukai, kietekai);
 
         grupe.clear();
         grupe.shrink_to_fit();
