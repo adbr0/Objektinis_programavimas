@@ -1,0 +1,20 @@
+#Failai ir bibliotekos
+*.exe
+*.o
+
+#Code::Blocks nustatymai
+*.cbp
+*.depend
+*.layout
+obj/
+bin/
+objektinis/
+
+#Testiniai ir sugeneruoti failai
+studentai_*.txt
+vargsiukai_*.txt
+kietekai_*.txt
+vargsiukai_vector_*.txt
+kietekai_vector_*.txt
+vargsiukai_list_*.txt
+kietekai_list_*.txt
