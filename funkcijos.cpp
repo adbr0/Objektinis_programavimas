@@ -489,6 +489,39 @@ void sparta_strategijos()
 
         std::cout << "\nFailas: '" << pavadinimas << "' (" << kiekis << " irasu) <<<\n";
 
+    //vector
+    std::vector<studentas> orig_vector;
+    nuskaitymas(orig_vector, pavadinimas);
+        {
+            auto grupe = orig_vector;
+            std::vector<studentas> varg, kiet;
+            auto t1 = std::chrono::high_resolution_clock::now();
+            padalinti_studentai_vector(grupe, varg, kiet);
+            auto t2 = std::chrono::high_resolution_clock::now();
+            std::chrono::duration<double> trukme = t2 - t1;
+            std::cout << "Vector 1 strategija (2 nauji): " << std::fixed << std::setprecision(5) << trukme.count() << " s\n";
+        }
+
+        {
+            auto grupe = orig_vector;
+            std::vector<studentas> varg;
+            auto t1 = std::chrono::high_resolution_clock::now();
+            padalinti_studentai_vector2(grupe, varg);
+            auto t2 = std::chrono::high_resolution_clock::now();
+            std::chrono::duration<double> trukme = t2 - t1;
+            std::cout << "Vector 2 strategija (1 naujas + erase):  " << std::fixed << std::setprecision(5) << trukme.count() << " s\n";
+        }
+
+        {
+            auto grupe = orig_vector;
+            std::vector<studentas> varg;
+            auto t1 = std::chrono::high_resolution_clock::now();
+            padalinti_studentai_vector3(grupe, varg);
+            auto t2 = std::chrono::high_resolution_clock::now();
+            std::chrono::duration<double> trukme = t2 - t1;
+            std::cout << "Vector 3 Strategija (stable partition):  " << std::fixed << std::setprecision(5) << trukme.count() << " s\n";
+        }
+
 }
 
 

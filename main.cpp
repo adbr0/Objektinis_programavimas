@@ -81,7 +81,7 @@ int main()
         }
         std::vector<studentas> vargsiukai;
         std::vector<studentas> kietekai;
-        padalinti_studentai(grupe, vargsiukai, kietekai);
+        padalinti_studentai_vector(grupe, vargsiukai, kietekai);
         failo_isv("vargsiukai.txt", vargsiukai);
         failo_isv("kietekai.txt", kietekai);
         std::cout<<"\n Studentai padalinti ir isvesti i failus:\n";
