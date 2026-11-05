@@ -510,6 +510,9 @@ void sparta_strategijos()
             std::cout << "Vector 1 strategija (2 nauji): " << std::fixed << std::setprecision(5) << trukme.count() << " s\n";
         }
 
+        if (kiekis > 100000) {
+            std::cout << "Vector 2 strategija (1 naujas + erase):  Praleista (per leta, O(N^2))\n";
+
         {
             auto grupe = orig_vector;
             std::vector<studentas> varg;
