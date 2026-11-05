@@ -17,9 +17,10 @@ int main()
         std::cout << "4. Sugeneruoti 5 testinius studentu failus\n";
         std::cout << "5. Spartos vector tyrimas\n";
         std::cout << "6. Spartos list tyrimas\n";
+        std::cout << "7. Spartos strategiju tyrimas\n";
         std::cout << "Pasirinkimas: ";
         std::cin >> pasirinkimas;
-        while(std::cin.fail() || pasirinkimas<1 || pasirinkimas>6)
+        while(std::cin.fail() || pasirinkimas<1 || pasirinkimas>7)
         {
             std::cin.clear();
             std::cin.ignore(1000, '\n');
@@ -55,6 +56,11 @@ int main()
     else if(pasirinkimas==6)
     {
         sparta_list();
+        return 0;
+    }
+    else if(pasirinkimas==7)
+    {
+        sparta_strategijos();
         return 0;
     }
     if(!grupe.empty())
