@@ -475,4 +475,24 @@ void sparta_list()
         std::cout<<"Bendras apdorojimo laikas: "<<std::fixed<<std::setprecision(4)<<bendra_trukme.count()<<" s.\n";
     }
 }
+void sparta_strategijos()
+{
+   std::vector<int> dydziai = {1000, 10000, 100000, 1000000};
+   std::cout<<"\n--- Programos strategiju sparta ---\n";
+   for (int kiekis : dydziai)
+    {
+        std::string pavadinimas = "studentai_" + std::to_string(kiekis) + ".txt";
+        if (!std::filesystem::exists(pavadinimas)) {
+            std::cout << "\nFailas '" << pavadinimas << "' nerastas.\n";
+            continue;
+        }
+
+        std::cout << "\nFailas: '" << pavadinimas << "' (" << kiekis << " irasu) <<<\n";
+
+}
+
+
+
+
+
 
