@@ -207,8 +207,8 @@ void padalinti_studentai_vector2(std::vector<studentas>& grupe, std::vector<stud
     auto i = grupe.begin();
     while (i != grupe.end()) {
         if (i->galutinisv < 5.0) {
-            vargsiukai.push_back(*it);
-            i = grupe.erase(it);
+            vargsiukai.push_back(*i);
+            i = grupe.erase(i);
         } else {
             ++i;
         }
@@ -361,6 +361,20 @@ void padalinti_studentai_list(const std::list<studentas>& grupe, std::list<stude
     {
         if(a.galutinisv<5.0){vargsiukai.push_back(a);}
         else{kietekai.push_back(a);};
+    }
+}
+
+void padalinti_studentai_list2(std::list<studentas>& grupe, std::list<studentas>& vargsiukai)
+{
+    vargsiukai.clear();
+    auto i = grupe.begin();
+    while (i != grupe.end()) {
+        if (i->galutinisv < 5.0) {
+            vargsiukai.push_back(*i);
+            i = grupe.erase(i);
+        } else {
+            ++i;
+        }
     }
 }
 
