@@ -171,7 +171,7 @@ void generuoti_failus()
 
         auto pabaiga = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> trukme = pabaiga-pradzia;
-        std::cout<<"Generavimas baigtas per: "<<std::fixed<<std::setprecision(4)<<trukme.count()<< " s.\n";
+        std::cout<<"  Generavimas baigtas per: "<<std::fixed<<std::setprecision(4)<<trukme.count()<< " s.\n";
 
     }
 }
@@ -205,6 +205,9 @@ void padalinti_studentai_vector2(std::vector<studentas>& grupe, std::vector<stud
 {
     vargsiukai.clear();
     auto i = grupe.begin();
+    size_t viso = grupe.size();
+    size_t perziureta = 0;
+
     while (i != grupe.end()) {
         if (i->galutinisv < 5.0) {
             vargsiukai.push_back(*i);
@@ -212,7 +215,12 @@ void padalinti_studentai_vector2(std::vector<studentas>& grupe, std::vector<stud
         } else {
             ++i;
         }
+    perziureta++;
+    if (viso >= 100000 && perziureta % 10000 == 0) {
+            std::cout << "." << std::flush;
+        }
     }
+    if (viso >= 100000) std::cout << " baigta\n";
 }
 void padalinti_studentai_vector3(std::vector<studentas>& grupe, std::vector<studentas>& vargsiukai)
 {
@@ -477,17 +485,17 @@ void sparta_list()
 }
 void sparta_strategijos()
 {
-   std::vector<int> dydziai = {1000, 10000, 100000, 1000000};
+   std::vector<int> dydziai = {1000, 10000, 100000, 1000000, 10000000};
    std::cout<<"\n--- Programos strategiju sparta ---\n";
    for (int kiekis : dydziai)
     {
         std::string pavadinimas = "studentai_" + std::to_string(kiekis) + ".txt";
         if (!std::filesystem::exists(pavadinimas)) {
-            std::cout << "\nFailas '" << pavadinimas << "' nerastas.\n";
+            std::cout << "\nFailas '" << pavadinimas << "' nerastas. \n";
             continue;
         }
 
-        std::cout << "\nFailas: '" << pavadinimas << "' (" << kiekis << " irasu) <<<\n";
+        std::cout << "\nFailas: '" << pavadinimas << "' (" << kiekis << " irasu)\n";
 
     //vector
     std::vector<studentas> orig_vector;
@@ -509,7 +517,7 @@ void sparta_strategijos()
             padalinti_studentai_vector2(grupe, varg);
             auto t2 = std::chrono::high_resolution_clock::now();
             std::chrono::duration<double> trukme = t2 - t1;
-            std::cout << "Vector 2 strategija (1 naujas + erase):  " << std::fixed << std::setprecision(5) << trukme.count() << " s\n";
+            std::cout << "Vector 2 strategija (1 naujas + erase): " << std::fixed << std::setprecision(5) << trukme.count() << " s\n";
         }
 
         {
@@ -519,7 +527,7 @@ void sparta_strategijos()
             padalinti_studentai_vector3(grupe, varg);
             auto t2 = std::chrono::high_resolution_clock::now();
             std::chrono::duration<double> trukme = t2 - t1;
-            std::cout << "Vector 3 strategija (stable partition):  " << std::fixed << std::setprecision(5) << trukme.count() << " s\n";
+            std::cout << "Vector 3 strategija (stable partition): " << std::fixed << std::setprecision(5) << trukme.count() << " s\n";
         }
 
         //list
@@ -544,7 +552,7 @@ void sparta_strategijos()
             padalinti_studentai_list2(grupe, varg);
             auto t2 = std::chrono::high_resolution_clock::now();
             std::chrono::duration<double> trukme = t2 - t1;
-            std::cout << "List 2 strategija (1 naujas + erase):  " << std::fixed << std::setprecision(5) << trukme.count() << " s\n";
+            std::cout << "List 2 strategija (1 naujas + erase): " << std::fixed << std::setprecision(5) << trukme.count() << " s\n";
         }
 
         {
