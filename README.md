@@ -7,6 +7,15 @@
 * **RAM:** 32.0 GB LPDDR5
 * **Storage:** SAMSUNG MZVL21T0HDLU-00BLL 
 * **Kompiliatorius:** GCC (Code::Blocks aplinkoje)
+---
+
+## Programos diegimo ir paleidimo instrukcija
+
+Projektas naudoja automatizuotą `Makefile` surinkimo sistemą.
+
+* **Kompiliavimas (Windows / MinGW):**
+  ```bash
+  mingw32-make
 
 ### Tyrimo metodika:
 * Tyrimas atliktas su 5 duomenų failais (1 000, 10 000, 100 000, 1 000 000 ir 10 000 000 įrašų).
@@ -179,13 +188,16 @@
 ### Testavimo eigos ekrano nuotraukos:
 
 #### 0 bandymas
+<img width="776" height="509" alt="Screenshot 2026-11-05 215616" src="https://github.com/user-attachments/assets/83120c78-1dce-4d8b-aa68-442f81de5a23" />
 
 #### 1 bandymas
+<img width="398" height="450" alt="Screenshot 2026-11-05 222454" src="https://github.com/user-attachments/assets/c1256d94-7836-4d60-845c-cb91f286cbb0" />
 
 #### 2 bandymas
+<img width="418" height="451" alt="Screenshot 2026-11-05 222720" src="https://github.com/user-attachments/assets/620eff5e-8e93-4159-b2b9-384e72b6bc2b" />
 
 #### 3 bandymas
-
+<img width="412" height="486" alt="Screenshot 2026-11-05 222954" src="https://github.com/user-attachments/assets/77f69ecd-822f-4a79-b787-4f4061fbb04b" />
 
 
 ---
