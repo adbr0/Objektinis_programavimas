@@ -87,12 +87,14 @@ int main()
         }
         std::vector<studentas> vargsiukai;
         std::vector<studentas> kietekai;
-        padalinti_studentai_vector(grupe, vargsiukai, kietekai);
+        padalinti_studentai_vector3(grupe, vargsiukai);
+
         failo_isv("vargsiukai.txt", vargsiukai);
-        failo_isv("kietekai.txt", kietekai);
-        std::cout<<"\n Studentai padalinti ir isvesti i failus:\n";
-        std::cout<<"1. 'vargsiukai.txt' "<< vargsiukai.size() <<" studentu\n";
-        std::cout<<"2. 'kietekai.txt' "<< kietekai.size() <<" studentu\n";
+        failo_isv("kietekai.txt", grupe);
+
+        std::cout << "\n Studentai padalinti (naudojant 3 strategija) ir isvesti i failus:\n";
+        std::cout << "1. 'vargsiukai.txt' " << vargsiukai.size() << " studentu\n";
+        std::cout << "2. 'kietekai.txt' " << grupe.size() << " studentu\n";
     }
 
     return 0;

@@ -6,6 +6,7 @@
 #include <filesystem>
 #include <chrono>
 #include <algorithm>
+#include <list>
 
 void nuskaitymas(std::vector<studentas>&grupe, const std::string&pavadinimas)
 {
@@ -49,6 +50,7 @@ void ivestis_r(std::vector<studentas>& grupe)
         studentas A;
         std::cout << "Iveskite per tarpa studento varda ir pavarde: ";
         std::cin >> A.vardas >> A.pavarde;
+        std::cin.ignore(1000, '\n');
 
         while (true) {
             int l;
@@ -511,8 +513,10 @@ void sparta_strategijos()
         }
 
         if (kiekis > 100000) {
-            std::cout << "Vector 2 strategija (1 naujas + erase):  Praleista (per leta, O(N^2))\n";
+            // 1M testas atliktas viena karta tyrimui (~3931 s), tolimesniuose bandymuose praleidziama del O(N^2)
+            std::cout << "Vector 2 strategija (1 naujas + erase):  Praleista (per leta, O(N^2))\n";}
 
+        else
         {
             auto grupe = orig_vector;
             std::vector<studentas> varg;

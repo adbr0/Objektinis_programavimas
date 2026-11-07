@@ -14,4 +14,8 @@ $(TARGET): $(OBJS)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
+ifeq ($(OS),Windows_NT)
+	-del /f /q $(OBJS) $(TARGET) 2>nul
+else
 	rm -f $(OBJS) $(TARGET)
+endif
