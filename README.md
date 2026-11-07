@@ -1,21 +1,23 @@
-**Pastaba:** Bendrą projekto informaciją bei ankstesnių versijų (`v0.1`, `v0.2`) realizacijas rasite pagrindinėje [main šakoje](https://github.com/adbr0/Objektinis_programavimas/blob/main/README.md). Šioje šakoje pateikta išsami **v0.3** konteinerių tyrimo ataskaita.
-
-## [v0.3] – Konteinerių spartos analizė: std::vector vs std::list
 
 ### Sistemos specifikacija:
+
 * **CPU:** 13th Gen Intel(R) Core(TM) i7-1365U
 * **RAM:** 32.0 GB LPDDR5
 * **Storage:** SAMSUNG MZVL21T0HDLU-00BLL 
 * **Kompiliatorius:** GCC (Code::Blocks aplinkoje)
+  
 ---
+### [v0.1]
+* Pradinė realizacija su rankiniu duomenų įvedimu, atsitiktinių pažymių generavimu ir nuskaitymu iš failo.
+* Galutinio balo skaičiavimas pagal vidurkį arba medianą.
+* Rezultatų pateikimas formatuotoje konsolės lentelėje.
 
-## Programos diegimo ir paleidimo instrukcija
-
-Projektas naudoja automatizuotą `Makefile` surinkimo sistemą.
-
-* **Kompiliavimas (Windows / MinGW):**
-  ```bash
-  mingw32-make
+### [v0.2]
+* Kodas išskaidytas į `studentas.h/cpp`, `funkcijos.h/cpp` ir `main.cpp`.
+* Funkcija, sukurianti 5 testinius failus (nuo 1 000 iki 10 000 000 įrašų).
+* Realizuotas rūšiavimas pagal naudotojo pasirinktą parametrą (pavardę, vardą, galutinį balą) bei skaidymas į `vargsiukai.txt` (< 5.0) ir `kietekai.txt` (>= 5.0).
+* Atliktas I/O ir apdorojimo laiko tyrimas naudojant `<chrono>`.
+## [v0.3] – Konteinerių spartos analizė: std::vector vs std::list
 
 ### Tyrimo metodika:
 * Tyrimas atliktas su 5 duomenų failais (1 000, 10 000, 100 000, 1 000 000 ir 10 000 000 įrašų).
@@ -82,9 +84,23 @@ Projektas naudoja automatizuotą `Makefile` surinkimo sistemą.
 <img width="485" height="479" alt="Screenshot 2026-10-23 155206" src="https://github.com/user-attachments/assets/6b9bbdf9-420d-4198-b6c0-1e0c29895e2c" />
 
 ---
+### v0.3 Išvada:
+- **Duomenų nuskaitymas ir išvedimas:** `std::vector` buvo 2 kartus greitesnis už `std::list` dėl tolydaus duomenų išdėstymo atmintyje ir efektyvaus CPU panaudojimo.
+- **Rūšiavimas:** `std::list::sort` buvo spartesnis nei `std::sort` ant vektoriaus, nes sąraše perstatomos tik elementų rodyklės, o vektoriuje perkeliami visi studento struktūros duomenys.
 
-### Tyrimo išvada:
-**Bendroji sparta ir įvestis/išvestis:** `std::vector` bendras veikimo laikas visais atvejais buvo mažesnis nei `std::list`. Duomenų nuskaitymas ir įrašymas su vektoriumi vyko beveik dvigubai greičiau.
+
+## Programos diegimo ir paleidimo instrukcija
+
+Projektas naudoja automatizuotą `Makefile` surinkimo sistemą su `-O3` vėliavėle.
+
+- **Kompiliavimas:**
+  - Windows (MinGW): `mingw32-make`
+  - Linux / macOS: `make`
+- **Paleidimas:**
+  - Windows: `programa.exe`
+  - Linux / macOS: `./programa`
+- **Valymas:**
+  - `mingw32-make clean` (arba `make clean`)
 
 ---
 
@@ -96,11 +112,6 @@ Projektas naudoja automatizuotą `Makefile` surinkimo sistemą.
 * **3 strategija (optimizuota):**
   * `std::vector` atveju – elementai pertvarkomi vietoje su `std::stable_partition`.
   * `std::list` atveju – atrenkami su `std::copy_if` ir ištrinami su `std::remove_if`.
-
-### Programos surinkimas su Makefile:
-* **Windows (MinGW):** `mingw32-make`
-* **Linux / macOS:** `make`
-* **Valymas:** `mingw32-make clean` (arba `make clean`)
 
 ---
 
@@ -208,7 +219,12 @@ Projektas naudoja automatizuotą `Makefile` surinkimo sistemą.
    * Naudojant `erase()` cikle, po kiekvieno elemento ištrynimo visi likę elementai perslenkami atmintyje ($O(N)$ veiksmas).
    * Bendras sudėtingumas tampa **$O(N^2)$**, todėl 1 000 000 įrašų apdorojimas truko **3931.55 s (virš 65 min)**. Vektoriui ši strategija dideliems duomenų kiekiams yra netinkama.
 2. **2 strategijos efektyvumas su `std::list`:**
-   * Sąraše trynimas (`erase`) yra $O(1)$, nes tereikia perstatyti mazgų rodykles. Todėl `std::list` 2 strategijoje veikė sparčiausiai (0.091 s su 1M įrašų), nes nereikėjo skirti papildomos atminties antram konteineriui.
+   * Sąraše trynimas (`erase`) yra $O(1)$, nes reikia perstatyti mazgų rodykles. Todėl `std::list` 2 strategijoje veikė sparčiausiai (0.09556 s su 1M įrašų), nes nereikėjo skirti papildomos
+     atminties antram konteineriui.
 3. **3 strategijos optimizacija:**
-   * Vektoriaus atveju `std::stable_partition` algoritmas išsprendė perslinkimų problemą – su 1M įrašų laikas krito nuo 3931 s iki **0.136 s**.
+   * Vektoriaus atveju `std::stable_partition` algoritmas išsprendė perslinkimų problemą – su 1M įrašų laikas krito nuo 3931 s iki **0.14404 s.**
    * Pritaikius šį algoritmą, vektorius aplenkė sąrašą dėl spartinančiosios atminties efektyvumo tolydžioje atmintyje.
+ 4. **Atminties sąnaudos (RAM):**
+    * **1 strategija:** Neefektyviausia - reikalauja 100% papildomos atminties, nes visi studentai dubliuojami naujuose konteineriuose.
+    * **2 strategija:** Reikalauja 40–50% papildomos atminties.
+    * **3 strategija (`stable_partition`):** Efektyviausia – studentai pertvarkomi tame pačiame vektoriuje, todėl papildomos atminties beveik nereikia.
